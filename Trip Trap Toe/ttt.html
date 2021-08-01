@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Trap Toe</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<section class="one" id="one">
+        <div class="bg"></div>
+        <div class="bg-2"></div>
+        <div class="bg-3"></div>
+        <h1 class="head text-grad keyf">Trip Trap Toe</h1>
+    <div class="container">
+        <div class="rule-box "> 
+            <h1>Rules</h1> 
+            <div class="rules-text">
+            <p>Make your opponent fall into the trap of making a triad before u make it, and win the game.
+                Toss will decide who will go first!</p>
+            </div>
+        </div>
+
+        <div class="playerbox">
+            <div class="player player1">
+                <input type="text" data-player1 placeholder="Player 1">
+            </div>
+            <div class="vs text-grad">VS</div>
+            <div class="player player2">
+                <input type="text" data-player2 placeholder="Player 2">
+            </div>
+        </div>
+
+        <div class="btns">
+            <div class="toss btn">
+                <a class="toss-btn" href="/">TOSS THE COIN </a>
+            </div> 
+        </div>
+
+        <div class="coin-parent">
+            <div class="coin"></div>
+        </div>    
+
+    </div>
+</div>
+
+<div class="popup center">
+    <p> Congrats!! <span data-popup></span>, you have won the toss!!
+    What do you choose?</p>
+    <div class="flex">
+        <a class="btn" data-first href="#two">Play First</a>
+        <a class="btn" data-second href="#two">Go Second</a>
+    </div>
+</div>
+
+<div class="popup2 center">
+    <p data-popup2></p>
+    <a href="ttt.html">Return</a>
+</div>
+
+</section>
+
+
+<!-- Section Two -->
+
+<section class="two" id="two">
+    <div class="bg-x"></div>
+    <div class="chance" data-chance></div>
+    <div class="board" id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+    </div>
+
+    <div class="final-msg" id="final-msg">
+        <div data-text></div>
+        <div class="btns">
+        <a href="ttt.html">Restart</a> 
+        <a href='/index.html' id="btn-quit" btn-quit>Quit</a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<script src="main.js"> </script>
+
+</body>
+
+</html>

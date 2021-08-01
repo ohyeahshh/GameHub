@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+body {
+  font-family: "Encode Sans SC", sans-serif;
+  justify-content: center;
+  align-items: center;
+  background: url(./game.jpg);
+  background-size: cover;
+}
+
+.container {
+  margin: auto;
+  height: 100vh;
+  min-width: 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.grid {
+  width: 300px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 0.8);
+  background-size: cover;
+}
+
+.grid div {
+  height: 30px;
+  width: 30px;
+}
+
+.tetromino {
+  background: crimson;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
+}
+
+.score-play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 35vw;
+}
+
+h3 {
+  width: 160px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 28px;
+  background: black;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+
+  font-family: "Encode Sans SC", sans-serif;
+}
+
+#start-button {
+  width: 100%;
+  font-size: 32px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid cyan;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  animation: border 500ms infinite alternate ease-in-out;
+}
+
+#start-button:hover {
+  background: black;
+  border: 2px solid purple;
+  animation: hover 500ms infinite alternate ease-in-out;
+}
+
+@keyframes border {
+  50% {
+    border: 2px solid pink;
+  }
+  100% {
+    border: 2px solid yellow;
+  }
+}
+
+@keyframes hover {
+  100% {
+    border: 2px solid purple;
+  }
+}
+.mini-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(0, 0, 0, 0.8);
+  background-size: cover;
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 1);
+}
+
+.mini-grid div {
+  height: 30px;
+  width: 30px;
+}
+
+.popup {
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 10;
+  width: 600px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 400ms 200ms ease-in-out, opacity 400ms 200ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px cyan solid;
+  box-shadow: 0px 0px 7px rgba(14, 192, 192, 0.5);
+}
+.popup h1 {
+  color: crimson;
+  font-size: 50px;
+  text-shadow: 0px 1px blue;
+}
+
+.popup h2 {
+  color: white;
+  font-size: 25px;
+}
+.btn-wrap {
+  display: flex;
+}
+.btn-wrap a {
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 20px;
+  border: 2px solid cyan;
+  margin-right: 20px;
+  border-radius: 20px;
+  color: cyan;
+  transition: color 300ms ease-in-out, border 300ms ease-in-out;
+}
+.btn-wrap a:hover {
+  color: rgb(12, 120, 182);
+  border: rgb(12, 120, 182) 2px solid;
+}

@@ -1,0 +1,463 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  --rotateSpeed: 0s;
+  --bounceSpeed: 0s;
+  --snakeBg: rgba(3, 255, 255, 0.8);
+  --tttBg: rgba(20, 117, 173, 0.8);
+  --tetrisBg: rgba(163, 3, 255, 0.8);
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: rgb(15, 15, 15);
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-x: hidden;
+  font-size: 75px;
+  min-height: 100vh;
+}
+
+.head {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  perspective: 10em;
+  bottom: -20px;
+}
+.head h1 {
+  font-size: 120px;
+  color: rgb(19, 19, 19);
+  transform: rotateX(50deg);
+
+  text-shadow: 6px 6px rgb(170, 210, 218), 0 0 6px #fff4;
+}
+
+.games {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+}
+
+.snake,
+.ttt,
+.tetris {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+
+  perspective: 10em;
+  perspective-origin: 50% calc(50% - 2em);
+}
+.scene {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: screenRotate var(--rotateSpeed) infinite linear;
+}
+
+@keyframes screenRotate {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+.ball {
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  position: absolute;
+  left: -0.5em;
+  bottom: 1em;
+}
+.snake .ball {
+  background: rgb(107, 153, 168);
+  background-image: radial-gradient(circle at top, rgb(110, 209, 212), #000);
+  animation: screenRotate var(--rotateSpeed) infinite linear reverse,
+    ballBounce var(--bounceSpeed) infinite ease-out;
+}
+
+@keyframes ballBounce {
+  0%,
+  100% {
+    bottom: 0.5em;
+  }
+  50% {
+    bottom: 3em;
+    animation-timing-function: ease-in;
+  }
+}
+
+.snake .floor {
+}
+
+.cube {
+  width: 2em;
+  height: 2em;
+
+  position: absolute;
+  bottom: -1em;
+  left: -1em;
+  transform-style: preserve-3d;
+  animation: cubeHeight var(--bounceSpeed) infinite linear;
+}
+
+@keyframes cubeHeight {
+  0%,
+  100% {
+    height: 1.5em;
+  }
+  8%,
+  93.5% {
+    height: 2em;
+  }
+}
+.floor {
+  position: absolute;
+  border-radius: 50%;
+  border: rgb(15, 15, 15) 2px solid;
+  transform: translate(-50%, -50%) rotateX(90deg);
+  top: 1em;
+  width: 4em;
+  height: 4em;
+  background-image: radial-gradient(#0000, rgb(15, 15, 15) 70%),
+    repeating-conic-gradient(
+      from 60deg,
+      rgb(188, 241, 245) 0deg 90deg,
+      #222 90deg 180deg
+    );
+  background-size: 100%, 1em 1em;
+}
+.left,
+.right,
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 0.5em #000a inset;
+}
+
+.snake .left,
+.snake .right,
+.snake .front,
+.snake .back,
+.snake .top {
+  background-color: var(--snakeBg);
+}
+
+.front {
+  transform: translateZ(1em);
+}
+.right {
+  transform: rotateY(90deg) translateZ(1em);
+}
+.back {
+  transform: rotateY(180deg) translateZ(1em);
+}
+.left {
+  transform: rotateY(270deg) translateZ(1em);
+}
+.top {
+  box-shadow: 0 0 0.5em #000a inset;
+  position: absolute;
+  width: 2em;
+  height: 2em;
+
+  transform: translateY(-50%) rotateX(90deg);
+}
+.bottom {
+  box-shadow: 0 0 0.5em #000a;
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  bottom: 0;
+  background: #0007;
+  transform: translateY(50%) rotateX(90deg);
+}
+
+.ball-shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#0008, #0000 45%);
+  animation: ballShadow var(--bounceSpeed) infinite ease-in;
+}
+@keyframes ballShadow {
+  0%,
+  8%,
+  93.5%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(2.5);
+    opacity: 0.5;
+    animation-timing-function: ease-in;
+  }
+}
+.snake .front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.snake .front a {
+  display: block;
+  text-decoration: none;
+  font-size: 0.45em;
+  color: cyan;
+  background: #000;
+  border-radius: 5px;
+  padding: 10px 15px;
+  box-shadow: 0 0 6px #0008;
+  border: 2px cyan solid;
+  transition: all 0.3s ease-in-out;
+}
+.snake .front a:hover {
+  color: white;
+  background: #000;
+  border: 1px white solid;
+}
+.snake .left {
+  background: url(/img/snake1.png);
+  background-size: cover;
+}
+
+.snake .right {
+  background-image: url(/img/snake2.png);
+  background-size: cover;
+}
+
+.snake .back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 1px cyan;
+}
+.snake .back h2 {
+  font-size: 0.5em;
+  text-shadow: 0 1px cyan;
+  text-align: center;
+}
+
+/* ----------------------TTT-------- */
+.ttt .ball {
+  background-image: radial-gradient(
+    circle at top,
+    rgba(127, 135, 243, 0.8),
+    #000
+  );
+  animation: screenRotate var(--rotateSpeed) infinite linear reverse,
+    ballBounce var(--bounceSpeed) infinite ease-out;
+}
+
+.ttt .floor {
+  background-image: radial-gradient(#0000, rgb(15, 15, 15) 70%),
+    repeating-conic-gradient(
+      from 60deg,
+      rgb(96, 187, 240) 0deg 90deg,
+      #222 90deg 180deg
+    );
+}
+
+.ttt .left,
+.ttt .right,
+.ttt .front,
+.ttt .back,
+.ttt .top {
+  background-color: var(--tttBg);
+}
+
+.ttt .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ttt .right a {
+  display: block;
+  text-decoration: none;
+  font-size: 0.45em;
+  color: rgb(32, 163, 240);
+  background: #000;
+  border-radius: 5px;
+  padding: 10px 15px;
+  box-shadow: 0 0 6px #0008;
+  border: 2px rgb(32, 163, 240) solid;
+  transition: all 0.3s ease-in-out;
+}
+.ttt .right a:hover {
+  color: white;
+  background: #000;
+  border: 1px white solid;
+}
+.ttt .front {
+  background: url(/img/ttt1.png);
+  background-size: cover;
+}
+
+.ttt .back {
+  background-image: url(/img/ttt2.png);
+  background-size: cover;
+}
+
+.ttt .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ttt .left h2 {
+  font-size: 0.5em;
+  text-align: center;
+  text-shadow: 0 2px rgb(32, 163, 240);
+}
+
+/*----------- TETRIS ------------*/
+
+.tetris .ball {
+  /* background: rgba(20, 117, 173, 0.8); */
+  background-image: radial-gradient(circle at top, rgb(214, 160, 245), #000);
+  animation: screenRotate var(--rotateSpeed) infinite linear reverse,
+    ballBounce var(--bounceSpeed) infinite ease-out;
+}
+.tetris .floor {
+  background-image: radial-gradient(#0000, rgb(15, 15, 15) 75%),
+    repeating-conic-gradient(
+      from 60deg,
+      rgb(172, 78, 226) 0deg 90deg,
+      #222 90deg 180deg
+    );
+}
+
+.tetris .back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tetris .back a {
+  display: block;
+  text-decoration: none;
+  font-size: 0.45em;
+  color: rgb(212, 139, 255);
+  background: #000;
+  border-radius: 5px;
+  padding: 10px 15px;
+  box-shadow: 0 0 6px #0008;
+  border: 2px rgb(212, 139, 255) solid;
+  transition: all 0.3s ease-in-out;
+}
+.tetris .back a:hover {
+  color: white;
+  background: #000;
+  border: 1px white solid;
+}
+.tetris .right {
+  background: url(/img/tetris1.png);
+  background-size: cover;
+}
+
+.tetris .left {
+  background-image: url(/img/tetris2.png);
+  background-size: cover;
+}
+
+.tetris .front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tetris .front h2 {
+  font-size: 0.5em;
+  text-shadow: 0 2px rgb(212, 139, 255);
+}
+
+.tetris .left,
+.tetris .right,
+.tetris .front,
+.tetris .back,
+.tetris .top {
+  background-color: var(--tetrisBg);
+}
+
+/* Media queries */
+
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 80px;
+  }
+  .head h1 {
+    font-size: 140px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  body {
+    font-size: 68px;
+  }
+  .head h1 {
+    font-size: 110px;
+  }
+}
+
+@media screen and (max-width: 876px) {
+  body {
+    font-size: 65px;
+  }
+  .head h1 {
+    font-size: 110px;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  body {
+    font-size: 85px;
+  }
+
+  .games {
+    flex-direction: column;
+  }
+
+  .head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .head h1 {
+    font-size: 80px;
+    margin-bottom: 50px;
+    text-align: center;
+    width: 100%;
+  }
+  .snake,
+  .ttt,
+  .tetris {
+    height: 70vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    font-size: 60px;
+  }
+  .head h1 {
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 386px) {
+  .snake,
+  .ttt,
+  .tetris {
+    height: 85vh;
+  }
+  .head h1 {
+    font-size: 50px;
+  }
+}

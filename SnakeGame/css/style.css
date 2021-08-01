@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  font-family: "Kaushan Script", cursive;
+}
+
+.body {
+  background-image: url(../img/bg.jpg);
+
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.side-bar {
+  padding: 5px 0;
+  width: 85vmin;
+  z-index: 3;
+  display: flex;
+
+  background: rgba(0, 0, 0, 0.9);
+  color: rgb(116, 196, 196);
+  box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.6);
+  font-size: 35px;
+  font-weight: bold;
+}
+#scoreBox,
+#hiscoreBox {
+  margin-left: 30px;
+  width: 50%;
+}
+
+#board {
+  /* background-image: url(/img/board.jpg); */
+  background: rgba(0, 0, 0, 0.92);
+  width: 85vmin;
+  height: 85vmin;
+  box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.8);
+  display: grid;
+  grid-template-rows: repeat(18, 1fr);
+  grid-template-columns: repeat(18, 1fr);
+  z-index: 3;
+}
+
+.head {
+  transform: scale(1.1);
+  z-index: 5;
+  border-radius: 10px;
+
+  background: cyan;
+  box-shadow: 0px 0px 7px 2px rgb(0, 110, 255);
+}
+
+.snake {
+  z-index: 5;
+  transform: scale(0.95);
+  border-radius: 5px;
+  background: #000;
+  box-shadow: 0px 0px 7px 3px cyan;
+}
+
+.food {
+  background-image: url(../img/food.png);
+  position: relative;
+  z-index: 4;
+  background-size: cover;
+  transform: scale(1.2);
+  border-radius: 50%;
+  /* box-shadow: 0px 0px 7px rgb(255, 230, 0); */
+}
+
+.popup {
+  background: #bdc3c7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #2c3e50,
+    #bdc3c7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2c3e50,
+    #bdc3c7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  opacity: 0;
+
+  position: absolute;
+  z-index: 10;
+  width: 600px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 400ms 200ms ease-in-out, opacity 400ms 200ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.popup h1 {
+  z-index: 12;
+  color: rgb(24, 24, 83);
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+.popup .restart,
+.popup a {
+  font-family: "Kaushan Script", cursive;
+  position: relative;
+  z-index: 12;
+  font-size: 30px;
+  text-decoration: none;
+  color: white;
+  background: #000;
+  padding: 10px 25px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  border: none;
+  transform: all 300ms ease-in-out;
+  transition-delay: 300ms;
+}
+.popup h2 {
+  z-index: 12;
+  text-align: center;
+  color: rgb(203, 218, 218);
+  text-shadow: 0 2px crimson;
+}
+img {
+  padding: 8px 40px;
+  width: 95px;
+}
+.img {
+  display: flex;
+}
+
+.popup-rules {
+  background: #bdc3c7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #2c3e50,
+    #bdc3c7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2c3e50,
+    #bdc3c7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  opacity: 0;
+
+  position: absolute;
+  z-index: 10;
+  width: 650px;
+  height: 275px;
+  top: 50%;
+
+  left: 50%;
+  padding: 20px 30px;
+  border-radius: 20px;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 400ms 200ms ease-in-out, opacity 400ms 200ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.popup-rules span {
+  color: rgb(224, 10, 53);
+  text-shadow: 1px 2px black;
+}
+.popup-rules .btn {
+  font-family: "Kaushan Script", cursive;
+  position: relative;
+  z-index: 13;
+  font-size: 22px;
+  color: rgb(211, 211, 211);
+  display: inline-block;
+  background: black;
+  border: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  transition: all 300ms ease-in-out;
+  transition-delay: 300ms;
+}
+.popup-rules p {
+  z-index: 12;
+  text-align: center;
+  font-size: 28px;
+  text-shadow: 0 1px black;
+  color: rgb(16, 16, 66);
+  pointer-events: none;
+  letter-spacing: 1px;
+}
+.popup-rules strong {
+  font-weight: bolder;
+  color: crimson;
+  text-shadow: 0px 2px black;
+}
+.btn:hover {
+  color: white;
+  background: rgb(9, 9, 80);
+  transition-delay: 400ms;
+}
+.restart:hover,
+a:hover {
+  color: white;
+  background: rgb(9, 9, 80);
+  transition-delay: 400ms;
+}
+
+button span,
+a span {
+  position: absolute;
+  display: block;
+  background: cyan;
+}
+
+button span:nth-child(1),
+a span:nth-child(1) {
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  background: cyan;
+  transform: scaleY(0);
+  transform-origin: bottom;
+
+  transition: transform 400ms ease-in-out;
+}
+
+button:hover span:nth-child(1),
+a:hover span:nth-child(1) {
+  transform: scaleY(1);
+  transform-origin: bottom;
+
+  transition: transform 400ms;
+}
+
+button span:nth-child(2),
+a span:nth-child(2) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: cyan;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 400ms ease-in-out;
+}
+
+button:hover span:nth-child(2),
+a:hover span:nth-child(2) {
+  transform: scaleX(1);
+  transform-origin: right;
+
+  transition: transform 400ms;
+}
+button span:nth-child(3),
+a span:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  background: cyan;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 300ms ease-in-out;
+}
+
+button:hover span:nth-child(3),
+a:hover span:nth-child(3) {
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 400ms;
+}
+button span:nth-child(4),
+a span:nth-child(4) {
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: cyan;
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 400ms ease-in-out;
+}
+
+button:hover span:nth-child(4),
+a:hover span:nth-child(4) {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 400ms;
+}
