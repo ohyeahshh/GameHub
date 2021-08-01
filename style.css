@@ -225,15 +225,9 @@ body {
   background: #000;
   border: 1px white solid;
 }
-.snake .left {
-  background: url(/img/snake1.png);
-  background-size: cover;
-}
 
-.snake .right {
-  background-image: url(/img/snake2.png);
-  background-size: cover;
-}
+
+
 
 .snake .back {
   display: flex;
@@ -297,15 +291,7 @@ body {
   background: #000;
   border: 1px white solid;
 }
-.ttt .front {
-  background: url(/img/ttt1.png);
-  background-size: cover;
-}
 
-.ttt .back {
-  background-image: url(/img/ttt2.png);
-  background-size: cover;
-}
 
 .ttt .left {
   display: flex;
@@ -358,15 +344,7 @@ body {
   background: #000;
   border: 1px white solid;
 }
-.tetris .right {
-  background: url(/img/tetris1.png);
-  background-size: cover;
-}
 
-.tetris .left {
-  background-image: url(/img/tetris2.png);
-  background-size: cover;
-}
 
 .tetris .front {
   display: flex;
